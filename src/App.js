@@ -1,12 +1,14 @@
 import './App.css';
 import LogIn from './pages/LogIn';
 import SignUp from './pages/SignUp';
+import Navigation from './navigation/Navigation';
 
 function App() {
   return (
     <div className="App">
-      <LogIn/>
-      <SignUp/>
+      <Navigation/>
+      {/* <LogIn/> */}
+      {/* <SignUp/> */}
     </div>
   );
 }

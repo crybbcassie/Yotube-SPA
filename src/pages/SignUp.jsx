@@ -1,8 +1,8 @@
 import { useState } from "react";
-// import { useNavigate } from "react-router-dom";
-// import { register } from "../utils/Verification";
+import { useNavigate } from "react-router-dom";
 import { Input, Button, Radio, Space } from "../components/antd/antd";
 import icon from "../components/images/icon.svg";
+import { register } from "../utils/helpers";
 
 
 export default function SignUp({ onFormSwitch }) {
@@ -26,18 +26,18 @@ export default function SignUp({ onFormSwitch }) {
     gender: gender,
     age: age,
   };
-  console.log(userRegisterData);
-  //   const navigate = useNavigate();
+    const navigate = useNavigate();
 
-  //   function changePage() {
-  //     onFormSwitch("login");
-  //     navigate("/Todo");
-  //   }
+    function changePage() {
+      onFormSwitch("login");
+      navigate("/youtube-spa/login");
+    }
 
   return (
     <>
       <div className="wrapper">
         <img src={icon} alt="icon" />
+        <h2>Sign Up</h2>
         <form className="content register" onSubmit={handleSubmit}>
           <Input
             value={username}
@@ -69,11 +69,11 @@ export default function SignUp({ onFormSwitch }) {
             onChange={(e) => setAge(e.target.value)}
             value={age}
             placeholder="Age"
-            type='number'
+            type="number"
           ></Input>
 
           <Button
-            // onClick={() => register(userRegisterData)}
+            onClick={() => register(userRegisterData, changePage)}
             type="primary"
           >
             Sign Up
@@ -81,10 +81,8 @@ export default function SignUp({ onFormSwitch }) {
         </form>
       </div>
 
-      <h3
-      //   onClick={() => changePage()}
-      >
-        Already have an account? <a>Log In!</a>
+      <h3>
+        Already have an account? <a onClick={() => changePage()}>Log In!</a>
       </h3>
     </>
   );

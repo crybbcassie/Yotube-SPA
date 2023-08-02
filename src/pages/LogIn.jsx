@@ -2,38 +2,32 @@ import { useState } from "react";
 import { Input, Button, Form, Checkbox } from "../components/antd/antd";
 import { useNavigate } from "react-router-dom";
 import icon from  '../components/images/icon.svg'
+import {login} from '../utils/helpers'
 
 export default function LogIn({ onFormSwitch, updateToken }) {
-    const onFinish = (values) => {
-      console.log("Success:", values);
-    };
-    const onFinishFailed = (errorInfo) => {
-      console.log("Failed:", errorInfo);
-    };
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-//   const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const userLoginData = {
     email: email,
     password: password,
   };
 
-  // console.log(userLoginData);
-
   function handleSubmit(e) {
     e.preventDefault();
   }
 
-//   function changePage() {
-//     onFormSwitch("register");
-//     navigate("/SignUp");
-//   }
+  function changePage() {
+    onFormSwitch("register");
+    navigate("/youtube-spa/signup");
+  }
 
   return (
     <>
       <div className="wrapper">
         <img src={icon} alt="icon" />
+        <h2>Log In</h2>
         <form className="content login" onSubmit={handleSubmit}>
           <Input
             value={email}
@@ -54,17 +48,14 @@ export default function LogIn({ onFormSwitch, updateToken }) {
           ></Input>
 
           <Button type="primary" className="primary"
-          //   onClick={() => login(userLoginData, navigate, updateToken)}
+            onClick={() => login(userLoginData, navigate, updateToken)}
           >
             Log In
           </Button>
         </form>
       </div>
-
-      <h3
-      //   onClick={() => changePage()}
-      >
-        Don't have an account? <a>Sign Up!</a>
+      <h3>
+        Don't have an account? <a onClick={() => changePage()}>Sign Up!</a>
       </h3>
     </>
   );
