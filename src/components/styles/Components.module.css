@@ -16,8 +16,28 @@ body{
     margin: 0 auto;
 }
 
+.headerLeft{
+    display: flex;
+}
+
 .tabs{
     display: block;
     margin: 0;
-    margin-bottom: -40px ;
+    margin-top: 40px;
+    padding: 0 20px;
+}
+
+/* main part */
+
+.content{
+    display: flex;
+    flex-direction: column;
+}
+
+/* favorites */
+
+.fav{
+    color: #1677ff;
+    font-weight: lighter;
+    margin-right: 220px;
 }
