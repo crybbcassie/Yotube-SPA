@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Input, Button, Radio, Space } from "../components/antd/antd";
+import { Input, Button, Radio, InputNumber } from "../components/antd/antd";
 import icon from "../components/images/icon.svg";
 import { register } from "../utils/helpers";
 
@@ -13,7 +13,7 @@ export default function SignUp({ onFormSwitch }) {
   const onChangeGender = (e) => {
     setGender(e.target.value);
   };
-  const [age, setAge] = useState("");
+  const [age, setAge] = useState(18);
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -36,7 +36,7 @@ export default function SignUp({ onFormSwitch }) {
   return (
     <>
       <div className="wrapper">
-        <img src={icon} alt="icon" />
+        <img src={icon} alt="icon"/>
         <h2>Sign Up</h2>
         <form className="content register" onSubmit={handleSubmit}>
           <Input
@@ -65,12 +65,15 @@ export default function SignUp({ onFormSwitch }) {
             <Radio value={"male"}>Male</Radio>
             <Radio value={"female"}>Female</Radio>
           </Radio.Group>
-          <Input
+          <InputNumber
             onChange={(e) => setAge(e.target.value)}
             value={age}
             placeholder="Age"
             type="number"
-          ></Input>
+            min={10}
+            max={100}
+            defaultValue={18}
+          ></InputNumber>
 
           <Button
             onClick={() => register(userRegisterData, changePage)}

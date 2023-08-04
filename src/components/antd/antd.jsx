@@ -1,3 +1,12 @@
-import {Input, Button, Form, Checkbox, Radio, Space} from 'antd'
+import {
+  Input,
+  Button,
+  Form,
+  Checkbox,
+  Radio,
+  Space,
+  Tabs,
+  InputNumber,
+} from "antd";
 
-export { Input, Button, Form, Checkbox, Radio, Space };
+export { Input, Button, Form, Checkbox, Radio, Space, Tabs, InputNumber  };

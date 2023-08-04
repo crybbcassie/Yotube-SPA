@@ -1,0 +1,23 @@
+/* header */
+
+body{
+    display: block;
+    margin: 0 auto;
+    padding: 0;
+}
+
+.header{
+    height: 70px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    padding: 0 50px;
+    margin: 0 auto;
+}
+
+.tabs{
+    display: block;
+    margin: 0;
+    margin-bottom: -40px ;
+}
