@@ -23,8 +23,9 @@ body{
 .tabs{
     display: block;
     margin: 0;
-    margin-top: 40px;
+    margin-top: 30px;
     padding: 0 20px;
+    font-size: 40px;
 }
 
 /* main part */
@@ -40,4 +41,5 @@ body{
     color: #1677ff;
     font-weight: lighter;
     margin-right: 220px;
+    font-size: 28px;
 }

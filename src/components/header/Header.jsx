@@ -26,16 +26,11 @@ export default function Header(){
 
     return (
       <div className={cl.header}>
-       
-          <div className={cl.headerLeft}>
-          <img src={icon} alt="icon" style={{width: '80px'}}/>
+        <div className={cl.headerLeft}>
+          <img src={icon} alt="icon" style={{ width: "80px" }} />
           <div className={cl.tabs}>
-          <Tabs
-            defaultActiveKey="1"
-            items={items}
-            style={{ fontSize: "116px" }}
-          />
-        </div>
+            <Tabs defaultActiveKey="1" items={items} size={'large'} />
+          </div>
         </div>
         <Button onClick={() => logOut()}>Log Out</Button>
       </div>
