@@ -6,6 +6,8 @@ import { Input, Space, Button} from "../components/antd/antd";
 import Header from '../components/header/Header'
 import cl from '../components/styles/Components.module.css'
 import { getVideo } from "../utils/helpers";
+import CardVideo from "../components/layout/CardVideo";
+import ListVideo from "../components/layout/ListVideo";
 
 export default function Search(){
    const [videoData, setVideoData] = useState(null);
@@ -41,12 +43,7 @@ export default function Search(){
             </Button>
           </Space.Compact>
 
-          
-
-            {videoData && 
-            <div className={cl.videoList}>
-              
-            </div>}
+          <ListVideo/>
 
         </div>
       </>
