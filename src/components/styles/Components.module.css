@@ -84,3 +84,11 @@ body{
 .cards{
     padding: 30px 10px;
 }
+
+/* modal */
+.modal{
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}

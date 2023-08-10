@@ -1,13 +1,10 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { fetchVideos } from "../redux/videoSlice";
 import { Input, Space, Button} from "../components/antd/antd";
 import Header from '../components/header/Header'
-import cl from '../components/styles/Components.module.css'
 import { getVideo } from "../utils/helpers";
-import CardVideo from "../components/layout/CardVideo";
-import ListVideo from "../components/layout/ListVideo";
+import EditModal from "../components/modals/EditModal";
 
 export default function Search(){
    const [videoData, setVideoData] = useState(null);
@@ -43,7 +40,7 @@ export default function Search(){
             </Button>
           </Space.Compact>
 
-          <ListVideo/>
+          <EditModal/>
 
         </div>
       </>

@@ -9,7 +9,13 @@ import {
   InputNumber,
   List,
   Card,
+  Modal,
+  Select,
+  Col,
+  Row,
+  Slider,
 } from "antd";
+import { HeartTwoTone, EditTwoTone, DeleteTwoTone } from "@ant-design/icons";
 
 export {
   Input,
@@ -22,4 +28,12 @@ export {
   InputNumber,
   List,
   Card,
+  Modal,
+  HeartTwoTone,
+  EditTwoTone,
+  DeleteTwoTone,
+  Select,
+  Col,
+  Row,
+  Slider,
 };
