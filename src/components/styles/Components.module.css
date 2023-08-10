@@ -43,3 +43,10 @@ body{
     margin-right: 220px;
     font-size: 28px;
 }
+
+
+/* video list */
+.videoList{
+    width: 700px;
+    height: 400px;
+}

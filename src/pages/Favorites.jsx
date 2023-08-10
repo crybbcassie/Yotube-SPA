@@ -1,5 +1,6 @@
 import {List} from '../components/antd/antd'
 import cl from '../components/styles/Components.module.css'
+import { Header } from 'antd/es/layout/layout';
 
 export default function Favorites(){
     const data = [
@@ -9,7 +10,9 @@ export default function Favorites(){
       "Man charged over missing wedding girl.",
       "Los Angeles battles huge wildfires.",
     ];
-    return (
+    return (<>
+      <Header/>
+    <div className='main'>
       <div className="content">
         <h1 className={cl.fav}>Favorites</h1>
         <List
@@ -20,5 +23,7 @@ export default function Favorites(){
           renderItem={(item) => <List.Item>{item}</List.Item>}
         />
       </div>
+      </div>
+      </>
     );
 }

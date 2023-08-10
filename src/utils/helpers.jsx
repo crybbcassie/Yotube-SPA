@@ -1,5 +1,6 @@
 import axios from "axios";
 
+// login&register
 export async function login(userLoginData, navigate, updateToken) {
   const loginUrl = "https://todo-redev.herokuapp.com/api/auth/login";
   // const loginUrl = process.env.REACT_APP_URL_LOGIN;
@@ -11,7 +12,7 @@ export async function login(userLoginData, navigate, updateToken) {
     });
     localStorage.setItem("token", result.data.token);
     updateToken(result.data.token);
-    navigate("/youtube-spa/main");
+    navigate("/youtube-spa/search");
   } catch (e) {
     if (e && e.response && e.response.data) {
       alert(e.response.data.message);
@@ -36,7 +37,31 @@ export async function register(userRegisterData, changePage) {
     if (e && e.response && e.response.data) {
       alert(e.response.data.message);
     } else {
-      alert("An error occurred while logging in.");
+      alert("An error occurred while register.");
     }
   }
 }
+
+// get video
+export const getVideo = async (currentId) => {
+  try {
+    const response = await axios.get(
+      "https://www.googleapis.com/youtube/v3/videos",
+      {
+        params: {
+          key: "AIzaSyCsNXupWYNLK2vB5E1zhdS9TdtsrOwDkAM",
+          part: "snippet",
+          id: currentId,
+        },
+      }
+    );
+      console.log('get video', response.data.items[0].snippet)
+    return response.data.items[0].snippet;
+  } catch (e) {
+     if (e && e.response && e.response.data) {
+       alert(e.response.data.message);
+     } else {
+       alert("An error occurred while get video.");
+     }
+  }
+};

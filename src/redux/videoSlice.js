@@ -3,7 +3,7 @@ import axios from "axios";
 
 export const fetchVideos = createAsyncThunk(
   "videos/fetchVideos",
-  async function (_, { rejectWithValue }) {
+  async function ({ search, results, sort }, { rejectWithValue }) {
     try {
       const response = await axios.get(
         "https://www.googleapis.com/youtube/v3/search",
@@ -12,11 +12,14 @@ export const fetchVideos = createAsyncThunk(
             key: "AIzaSyCsNXupWYNLK2vB5E1zhdS9TdtsrOwDkAM",
             part: "snippet",
             type: "video",
+            maxResults: results,
+            order: sort,
+            q: search,
           },
         }
       );
-      console.log(response)
-      return response
+      console.log({ data: response.data.items, search: search });
+      return { data: response.data.items, search: search };
     } catch (e) {
       return rejectWithValue(e.message);
     }
@@ -32,7 +35,7 @@ const videoSlice = createSlice({
   },
   reducers: {
     addVideos(state, action) {
-      state.todos.push(action.payload.data);
+      state.videos.push(action.payload.data);
     },
   },
   extraReducers: {

@@ -1,6 +1,7 @@
 import { Routes, Route } from "react-router-dom";
-import { LogIn, SignUp, Main } from "../pages/index";
+import { LogIn, SignUp, Search } from "../pages/index";
 import { useState } from "react";
+import Favorites from "../pages/Favorites";
 
 export default function Navigation() {
   const [token, setToken] = useState(localStorage.getItem("token"));
@@ -17,7 +18,7 @@ export default function Navigation() {
   return (
     <Routes>
       {token ? (
-        <Route path="youtube-spa/main" element={<Main />} />
+        <Route path="youtube-spa/search" element={<Search />} />
       ) : (
         <>
           <Route

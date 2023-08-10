@@ -1,5 +1,6 @@
 import LogIn from './LogIn'
 import SignUp from './SignUp'
-import Main from './Main'
+import Search from './Search'
+import Favorites from './Favorites'
 
-export {LogIn, SignUp, Main}
+export {LogIn, SignUp, Search, Favorites}
