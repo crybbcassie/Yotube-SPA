@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { Input, Space, Button} from "../components/antd/antd";
 import Header from '../components/header/Header'
 import { getVideo } from "../utils/helpers";
-import EditModal from "../components/modals/EditModal";
+import Favorites from './Favorites'
 
 export default function Search(){
    const [videoData, setVideoData] = useState(null);
@@ -39,9 +39,7 @@ export default function Search(){
               Search
             </Button>
           </Space.Compact>
-
-          <EditModal/>
-
+          <Favorites/>
         </div>
       </>
     );

@@ -14,6 +14,7 @@ import {
   Col,
   Row,
   Slider,
+  Table
 } from "antd";
 import { HeartTwoTone, EditTwoTone, DeleteTwoTone } from "@ant-design/icons";
 
@@ -36,4 +37,5 @@ export {
   Col,
   Row,
   Slider,
+  Table
 };

@@ -1,29 +1,70 @@
-import {List} from '../components/antd/antd'
+import { Table, EditTwoTone, DeleteTwoTone } from "../components/antd/antd";
 import cl from '../components/styles/Components.module.css'
-import { Header } from 'antd/es/layout/layout';
+import EditModal  from "../components/modals/EditModal";
+import { useState } from "react";
 
 export default function Favorites(){
-    const data = [
-      "Racing car sprays burning fuel into crowd.",
-      "Japanese princess to wed commoner.",
-      "Australian walks 100km after outback crash.",
-      "Man charged over missing wedding girl.",
-      "Los Angeles battles huge wildfires.",
-    ];
-    return (<>
-      <Header/>
-    <div className='main'>
-      <div className="content">
+  const [visible, setVisible] = useState(false);
+  const handleBuyClick = () => {
+    setVisible(true);
+  };
+
+  const handleCancel = () => {
+    setVisible(false);
+  };
+
+   const columns = [
+     {
+       title: "Title",
+       dataIndex: "title",
+       key: "title",
+       width: 600,
+     },
+     {
+       title: "Edit",
+       dataIndex: "edit",
+       key: "edit",
+       render: () => (
+         <EditTwoTone
+           style={{ fontSize: "25px", cursor: "pointer" }}
+            onClick={handleBuyClick}
+         />
+       ),
+        onCell: (record) => ({
+          onClick: () => handleBuyClick(record),
+        }),
+     },
+     {
+       title: "Delete",
+       dataIndex: "delete",
+       key: "delete",
+       render: () => (
+         <DeleteTwoTone
+           style={{ fontSize: "25px", cursor: "pointer" }}
+         />
+       ),
+      //  onCell: (record) => ({
+      //    onClick: () => dispatch(removeVideo(record)),
+      //  }),
+     },
+   ];
+
+   const data = [
+     {
+       key: 'qew',
+       title: 'qfffffffffffffffqq'
+     },
+   ];
+
+    return (
+      <div className="main">
         <h1 className={cl.fav}>Favorites</h1>
-        <List
-          size="large"
-          bordered
+        <Table
           dataSource={data}
-          style={{ width: "500px", backgroundColor: "#fff" }}
-          renderItem={(item) => <List.Item>{item}</List.Item>}
+          columns={columns}
+          style={{ width: "inherit" }}
         />
+        <EditModal open={visible} onCancel={handleCancel} />
       </div>
-      </div>
-      </>
     );
 }

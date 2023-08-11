@@ -13,30 +13,19 @@ import {
 import { useState } from 'react';
 import cl from '../styles/Components.module.css'
 
-export default function EditModal(){
+export default function EditModal({ open, onCancel }){
      const [inputValue, setInputValue] = useState(1);
      const onChange = (newValue) => {
        setInputValue(newValue);
      };
-     const [isModalOpen, setIsModalOpen] = useState(false);
-     const showModal = () => {
-       setIsModalOpen(true);
-     };
-     const handleOk = () => {
-       setIsModalOpen(false);
-     };
-     const handleCancel = () => {
-       setIsModalOpen(false);
-     };
 
     return (
       <>
-        <EditTwoTone onClick={showModal} style={{ fontSize: "30px" }} />
         <Modal
           title="Edit Youtube search path"
-          open={isModalOpen}
-          onOk={handleOk}
-          onCancel={handleCancel}
+          visible={open}
+          
+          onCancel={onCancel}
           style={{ maxWidth: "400px" }}
         >
           <div className={cl.modal}>
