@@ -12,7 +12,7 @@ export async function login(userLoginData, navigate, updateToken) {
     });
     localStorage.setItem("token", result.data.token);
     updateToken(result.data.token);
-    navigate("/youtube-spa/search");
+    navigate("/youtube-spa/main");
   } catch (e) {
     if (e && e.response && e.response.data) {
       alert(e.response.data.message);
@@ -42,26 +42,26 @@ export async function register(userRegisterData, changePage) {
   }
 }
 
-// get video
-export const getVideo = async (currentId) => {
-  try {
-    const response = await axios.get(
-      "https://www.googleapis.com/youtube/v3/videos",
-      {
-        params: {
-          key: "AIzaSyCsNXupWYNLK2vB5E1zhdS9TdtsrOwDkAM",
-          part: "snippet",
-          id: currentId,
-        },
-      }
-    );
-      console.log('get video', response.data.items[0].snippet)
-    return response.data.items[0].snippet;
-  } catch (e) {
-     if (e && e.response && e.response.data) {
-       alert(e.response.data.message);
-     } else {
-       alert("An error occurred while get video.");
-     }
-  }
-};
+// // get video
+// export const getVideo = async (currentId) => {
+//   try {
+//     const response = await axios.get(
+//       "https://www.googleapis.com/youtube/v3/videos",
+//       {
+//         params: {
+//           key: "AIzaSyCsNXupWYNLK2vB5E1zhdS9TdtsrOwDkAM",
+//           part: "snippet",
+//           id: currentId,
+//         },
+//       }
+//     );
+//       console.log('get video', response.data.items[0].snippet)
+//     return response.data.items[0].snippet;
+//   } catch (e) {
+//      if (e && e.response && e.response.data) {
+//        alert(e.response.data.message);
+//      } else {
+//        alert("An error occurred while get video.");
+//      }
+//   }
+// };

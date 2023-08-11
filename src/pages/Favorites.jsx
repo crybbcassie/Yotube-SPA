@@ -1,9 +1,14 @@
 import { Table, EditTwoTone, DeleteTwoTone } from "../components/antd/antd";
 import cl from '../components/styles/Components.module.css'
 import EditModal  from "../components/modals/EditModal";
+import Header from '../components/header/Header'
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 
 export default function Favorites(){
+    const btn = `Back to search`;
+
   const [visible, setVisible] = useState(false);
   const handleBuyClick = () => {
     setVisible(true);
@@ -12,7 +17,6 @@ export default function Favorites(){
   const handleCancel = () => {
     setVisible(false);
   };
-
    const columns = [
      {
        title: "Title",
@@ -56,15 +60,24 @@ export default function Favorites(){
      },
    ];
 
+  const navigate = useNavigate();
+  function nav(){
+    navigate('/youtube-spa/search')
+    console.log('-------')
+   }
+
     return (
-      <div className="main">
-        <h1 className={cl.fav}>Favorites</h1>
-        <Table
-          dataSource={data}
-          columns={columns}
-          style={{ width: "inherit" }}
-        />
-        <EditModal open={visible} onCancel={handleCancel} />
-      </div>
+      <>
+        <Header btn={btn} nav={nav}/>
+        <div className="main">
+          <h1 className={cl.fav}>Favorites</h1>
+          <Table
+            dataSource={data}
+            columns={columns}
+            style={{ width: "inherit" }}
+          />
+          <EditModal open={visible} onCancel={handleCancel} />
+        </div>
+      </>
     );
 }

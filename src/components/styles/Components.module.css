@@ -21,12 +21,31 @@ body{
 }
 
 .tabs{
-    display: block;
-    margin: 0;
-    margin-top: 20px;
-    padding: 0 20px;
-    font-size: 40px;
+    display: flex;
+    width: 170px;
+    font-size: 18px;
+    justify-content: space-between;  
+    align-items: center;
+    margin: 10px;
 }
+
+.tab{
+ text-decoration: none;
+    color: #1677ff;
+    padding: 5px 8px 10px 8px;
+}
+
+.tab .active{
+    color: #808080;  
+    background-color: #0000000f;
+    margin-top: 18px;
+    border-radius: 5px 5px 0 0 ;
+}
+
+.tab:hover{
+    text-decoration: underline;
+}
+
 
 /* main part */
 
