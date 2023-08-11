@@ -45,10 +45,18 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: start;
   margin: 3rem auto;
   padding: 2rem 3rem;
 }
+
+.favs{
+  align-items: center;
+}
+/* .search{
+  display: flex;
+  justify-content: end;
+} */
 
 /* Указываем box sizing */
 *,

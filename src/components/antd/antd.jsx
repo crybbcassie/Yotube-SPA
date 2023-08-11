@@ -16,7 +16,14 @@ import {
   Slider,
   Table
 } from "antd";
-import { HeartTwoTone, EditTwoTone, DeleteTwoTone } from "@ant-design/icons";
+import {
+  HeartOutlined,
+  HeartTwoTone,
+  EditTwoTone,
+  DeleteTwoTone,
+  BuildTwoTone,
+  AppstoreTwoTone,
+} from "@ant-design/icons";
 
 export {
   Input,
@@ -37,5 +44,8 @@ export {
   Col,
   Row,
   Slider,
-  Table
+  Table,
+  HeartOutlined,
+  BuildTwoTone,
+  AppstoreTwoTone,
 };

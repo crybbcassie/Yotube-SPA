@@ -17,7 +17,12 @@ export default function Header({ btn, nav, ...props }) {
         <div className={cl.headerLeft}>
           <img src={icon} alt="icon" style={{ width: "80px" }} />
           <div className={cl.tabs}>
-            <Button {...props} type="primary" onClick={nav}>
+            <Button
+              {...props}
+              type="primary"
+              style={{ width: "120px" }}
+              onClick={nav}
+            >
               {btn}
             </Button>
           </div>

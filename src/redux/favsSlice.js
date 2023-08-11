@@ -1,8 +1,28 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+const initialState = {
+  value: [
+    {
+      search: "How to play chess?",
+      result: 8,
+      sort: "relevance",
+    },
+    {
+      search: "How to receive princess treatment",
+      result: 8,
+      sort: "relevance",
+    },
+    {
+      search: "Barbie 2023",
+      result: 8,
+      sort: "relevance",
+    },
+  ],
+};
+
 export const favsSlice = createSlice({
   name: "favs",
-  initialState: [],
+  initialState,
   reducers: {
     addItem: (state, action) => {
       state.value.push({
@@ -19,16 +39,11 @@ export const favsSlice = createSlice({
     },
     editItem: (state, action) => {
       const { prevState, newState, results, sort } = action.payload;
-
-      // Проверяем, есть ли уже элемент с таким значением newState в массиве
       const isDuplicate = state.value.some(
         (item) =>
           item.search.toLowerCase().trim() === newState.toLowerCase().trim()
       );
-
-      // Если элемент уже существует, можно выполнить какие-то дополнительные действия или просто вернуть текущее состояние
       if (isDuplicate) {
-        // Действия для случая, когда элемент уже существует
         return state;
       }
 

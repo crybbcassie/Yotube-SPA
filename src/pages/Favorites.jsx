@@ -63,13 +63,12 @@ export default function Favorites(){
   const navigate = useNavigate();
   function nav(){
     navigate('/youtube-spa/search')
-    console.log('-------')
    }
 
     return (
       <>
         <Header btn={btn} nav={nav}/>
-        <div className="main">
+        <div className="main favs">
           <h1 className={cl.fav}>Favorites</h1>
           <Table
             dataSource={data}
