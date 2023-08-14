@@ -13,13 +13,20 @@ export const fetchVideos = createAsyncThunk(
             part: "snippet",
             type: "video",
             maxResults: results,
-            order: sort,
             q: search,
+            sort: sort,
           },
         }
       );
-      console.log({ data: response.data.items, search: search });
-      return { data: response.data.items, search: search };
+      const videos = response.data.items.map((item) => ({
+        id: item.id.videoId,
+        title: item.snippet.title,
+        description: item.snippet.description,
+        thumbnail: item.snippet.thumbnails.default.url,
+      }));
+      return response.data.items;
+      // console.log({ data: response.data.items, search: search });
+      // return { data: response.data.items, search: search };
     } catch (e) {
       return rejectWithValue(e.message);
     }
@@ -38,19 +45,19 @@ const videoSlice = createSlice({
       state.videos.push(action.payload.data);
     },
   },
-  extraReducers: {
-    [fetchVideos.pending]: (state) => {
-      state.status = "loading";
-      state.error = null;
-    },
-    [fetchVideos.fulfilled]: (state, action) => {
-      state.status = "resolved";
-      state.todos = action.payload;
-    },
-    [fetchVideos.rejected]: (state, action) => {
-      state.status = "rejected";
-      state.error = action.payload;
-    },
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchVideos.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(fetchVideos.fulfilled, (state, action) => {
+        state.status = "succeeded";
+        state.videos = action.payload;
+      })
+      .addCase(fetchVideos.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.payload;
+      });
   },
 });
 

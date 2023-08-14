@@ -1,6 +1,5 @@
-import { useSelector, useDispatch } from "react-redux";
-import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
 import {
   Input,
   Space,
@@ -13,38 +12,26 @@ import {
 import Header from '../components/header/Header'
 import { useNavigate } from "react-router-dom";
 import cl from '../components/styles/Components.module.css'
+import { fetchVideos } from "../redux/videoSlice";
+import CardVideo from '../components/layout/CardVideo'
+import ListVideo from '../components/layout/ListVideo'
 
 export default function Search(){
-  const [value, setValue] = useState("");
+const [query, setQuery] = useState("");
+const videos = useSelector((state) => state.videos.videos);
+console.log(videos)
 const [isFavorite, setIsFavorite] = useState(false);
+
+const handleSearch = () => {
+    dispatch(fetchVideos({ search: query, results: 10, sort: "relevance" }));
+  };
+
  const handleFavorite = () => {
    setIsFavorite(!isFavorite);
  };
-
- const handleInputChange = (e) => {
-   setValue(e.target.value);
- };
-
-
-   const [videoData, setVideoData] = useState(null);
   const dispatch = useDispatch();
-  const params = useParams();
   const btn = `Favorites ♡`;
 
-  // function search(){
-  // dispatch(fetchVideos())
-  // }
-  //  useEffect(() => {
-  //    const getDataVideo = async () => {
-  //      try {
-  //        const response = await getVideo(params.id);
-  //         setVideoData(response);
-  //      } catch (error) {
-  //        console.log(error);
-  //      }
-  //    };
-  //    getDataVideo();
-  //  }, []);
 
     const navigate = useNavigate();
     function nav() {
@@ -59,8 +46,7 @@ const [isFavorite, setIsFavorite] = useState(false);
             <Input
               size="large"
               placeholder="Enter a request"
-              value={value}
-              onChange={handleInputChange}
+              onChange={(e) => setQuery(e.target.value)}
               addonBefore={
                 <div onClick={handleFavorite}>
                   {isFavorite ? (
@@ -71,22 +57,30 @@ const [isFavorite, setIsFavorite] = useState(false);
                 </div>
               }
             />
-            <Button
-              size="large"
-              type="primary"
-              // onClick={() => search()}
-            >
+            <Button size="large" type="primary" onClick={handleSearch}>
               Search
             </Button>
           </Space.Compact>
           <div className={cl.layout}>
             <BuildTwoTone
-              style={{ fontSize: "25px", padding: "10px 5px", cursor: "pointer" }}
+              style={{
+                fontSize: "25px",
+                padding: "10px 5px",
+                cursor: "pointer",
+              }}
             />
             <AppstoreTwoTone
-              style={{ fontSize: "25px", padding: "10px 5px", cursor: "pointer" }}
+              style={{
+                fontSize: "25px",
+                padding: "10px 5px",
+                cursor: "pointer",
+              }}
             />
           </div>
+            {videos && videos.map((video) => (
+              // <CardVideo video={video}/>
+              <ListVideo video={video}/>
+            ))}
         </div>
       </>
     );

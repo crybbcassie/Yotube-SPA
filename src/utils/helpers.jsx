@@ -15,9 +15,9 @@ export async function login(userLoginData, navigate, updateToken) {
     navigate("/youtube-spa/main");
   } catch (e) {
     if (e && e.response && e.response.data) {
-      alert(e.response.data.message);
+      console.log(e.response.data.message);
     } else {
-      alert("An error occurred while logging in.");
+      console.log("An error occurred while logging in.");
     }
   }
 }
@@ -35,33 +35,52 @@ export async function register(userRegisterData, changePage) {
       console.log(result)
   } catch (e) {
     if (e && e.response && e.response.data) {
-      alert(e.response.data.message);
+      console.log(e.response.data.message);
     } else {
-      alert("An error occurred while register.");
+      console.log("An error occurred while register.");
     }
   }
 }
 
-// // get video
-// export const getVideo = async (currentId) => {
-//   try {
-//     const response = await axios.get(
-//       "https://www.googleapis.com/youtube/v3/videos",
-//       {
-//         params: {
-//           key: "AIzaSyCsNXupWYNLK2vB5E1zhdS9TdtsrOwDkAM",
-//           part: "snippet",
-//           id: currentId,
-//         },
-//       }
-//     );
-//       console.log('get video', response.data.items[0].snippet)
-//     return response.data.items[0].snippet;
-//   } catch (e) {
-//      if (e && e.response && e.response.data) {
-//        alert(e.response.data.message);
-//      } else {
-//        alert("An error occurred while get video.");
-//      }
-//   }
-// };
+// get video
+export const getVideo = async (currentId) => {
+  try {
+    const response = await axios.get(
+      "https://www.googleapis.com/youtube/v3/videos",
+      {
+        params: {
+          key: "AIzaSyCsNXupWYNLK2vB5E1zhdS9TdtsrOwDkAM",
+          part: "snippet",
+          id: currentId,
+        },
+      }
+    );
+      console.log('get video', response.data.items[0].snippet)
+    return response.data.items[0].snippet;
+  } catch (e) {
+     if (e && e.response && e.response.data) {
+       console.log(e.response.data.message);
+     } else {
+       console.log("An error occurred while get video.");
+     }
+  }
+};
+
+export const getViews = async (currentId) => {
+  try {
+    const response = await axios.get(
+      "https://www.googleapis.com/youtube/v3/videos",
+      {
+        params: {
+          key: "AIzaSyCJ6AL7gdQucwj1Mmd1wTXWz9-nUJT-M90",
+          part: "statistics",
+          id: currentId,
+        },
+      }
+    );
+
+    return response.data.items[0].statistics.viewCount;
+  } catch (error) {
+    console.log(error);
+  }
+};
