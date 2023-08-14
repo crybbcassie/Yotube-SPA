@@ -72,17 +72,15 @@ body{
 
 .videoItem{
     display: flex;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     transition: 0.3s;
     margin: 10px 5px;
 }
 
 .videoItem:hover {
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-}
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);}
 
 .videoDescription{
-    padding: 10px;
+    padding: 10px 20px;
     display: flex;
     flex-direction: column;
     align-items: start;
@@ -92,16 +90,17 @@ body{
 
 .videoDescription h2{
     color: #1677ff;
+    text-align: start;
 }
 
 .videoDescription p{
     color: #808080;
-    padding: 0 5px;
+    text-align: start;
 }
 
 
 .cards{
-    padding: 30px 10px;
+    padding:10px 0px;
 }
 
 /* modal */
@@ -115,4 +114,5 @@ body{
 /* layout */
 .layout{
     display: flex;
+    padding: 10px 2px 5px 2px;
 }

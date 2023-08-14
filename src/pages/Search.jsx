@@ -6,8 +6,10 @@ import {
   Button,
   HeartOutlined,
   HeartTwoTone,
-  BuildTwoTone,
-  AppstoreTwoTone,
+  AppstoreOutlined,
+  BarsOutlined,
+  Segmented,
+  Row, Col
 } from "../components/antd/antd";
 import Header from '../components/header/Header'
 import { useNavigate } from "react-router-dom";
@@ -21,6 +23,11 @@ const [query, setQuery] = useState("");
 const videos = useSelector((state) => state.videos.videos);
 console.log(videos)
 const [isFavorite, setIsFavorite] = useState(false);
+const [selectedOption, setSelectedOption] = useState("List");
+
+const handleOptionChange = (value) => {
+  setSelectedOption(value);
+};
 
 const handleSearch = () => {
     dispatch(fetchVideos({ search: query, results: 10, sort: "relevance" }));
@@ -62,25 +69,33 @@ const handleSearch = () => {
             </Button>
           </Space.Compact>
           <div className={cl.layout}>
-            <BuildTwoTone
-              style={{
-                fontSize: "25px",
-                padding: "10px 5px",
-                cursor: "pointer",
-              }}
+            <Segmented
+              options={[
+                {
+                  value: "List",
+                  icon: <BarsOutlined />,
+                },
+                {
+                  value: "Kanban",
+                  icon: <AppstoreOutlined />,
+                },
+              ]}
+              selected={selectedOption}
+              onChange={handleOptionChange}
             />
-            <AppstoreTwoTone
-              style={{
-                fontSize: "25px",
-                padding: "10px 5px",
-                cursor: "pointer",
-              }}
-            />
-          </div>
-            {videos && videos.map((video) => (
-              // <CardVideo video={video}/>
-              <ListVideo video={video}/>
-            ))}
+          </div> 
+          <Row gutter={[8, 16]}>
+          {videos &&
+            videos.map((video) =>
+              selectedOption === "List" ? (
+                <ListVideo video={video} />
+              ) : (
+                  <Col span={6} key={video.etag}>
+                    <CardVideo video={video} />
+                  </Col>
+              )
+            )}
+            </Row>
         </div>
       </>
     );

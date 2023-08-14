@@ -3,12 +3,19 @@ import cl from '../styles/Components.module.css'
 
 export default function CardVideo({ video }) {
   const { Meta } = Card;
+    function shortStr(str) {
+      if (str.length > 60) {
+        return str.slice(0, 60) + "...";
+      } else {
+        return str;
+      }
+    }
   return (
     <div className={cl.cards}>
       <Card
         hoverable
         style={{
-          width: 280,
+          width: 220,
         }}
         cover={
           <img
@@ -19,7 +26,7 @@ export default function CardVideo({ video }) {
       >
         <Meta
           title={video.snippet.title}
-          description={video.snippet.description}
+          description={shortStr(video.snippet.description)}
         />
       </Card>
     </div>

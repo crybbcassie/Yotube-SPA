@@ -14,7 +14,8 @@ import {
   Col,
   Row,
   Slider,
-  Table
+  Table,
+  Segmented,
 } from "antd";
 import {
   HeartOutlined,
@@ -23,6 +24,8 @@ import {
   DeleteTwoTone,
   BuildTwoTone,
   AppstoreTwoTone,
+  AppstoreOutlined,
+  BarsOutlined,
 } from "@ant-design/icons";
 
 export {
@@ -48,4 +51,7 @@ export {
   HeartOutlined,
   BuildTwoTone,
   AppstoreTwoTone,
+  Segmented,
+  AppstoreOutlined,
+  BarsOutlined,
 };
