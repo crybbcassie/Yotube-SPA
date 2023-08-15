@@ -7,7 +7,7 @@ export default function Header({ btn, nav, ...props }) {
   const navigate = useNavigate();
   function logOut() {
     localStorage.removeItem("token");
-    navigate("/youtube-spa/login");
+    navigate("/youtube-spa");
     window.location.reload();
   }
 

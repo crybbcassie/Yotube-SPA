@@ -24,7 +24,7 @@ export default function Navigation() {
       ) : (
         <>
           <Route
-            path="/youtube-spa/login"
+            path="/youtube-spa"
             element={
               <LogIn onFormSwitch={toggleForm} updateToken={updateToken} />
             }

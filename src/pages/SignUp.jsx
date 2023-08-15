@@ -30,7 +30,7 @@ export default function SignUp({ onFormSwitch }) {
 
     function changePage() {
       onFormSwitch("login");
-      navigate("/youtube-spa/login");
+      navigate("/youtube-spa");
     }
 
   return (

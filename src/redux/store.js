@@ -10,12 +10,10 @@ const persistConfig = {
    storage,
  };
 
-
 const rootReducer = combineReducers({
   videos: videoReducer,
   favs: favsReducer,
 });
-
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)
 
@@ -25,5 +23,4 @@ const store = configureStore({
 });
 
 export const persistor = persistStore(store)
-
 export default store

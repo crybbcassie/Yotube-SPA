@@ -36,33 +36,27 @@ export const favsSlice = createSlice({
         (fav) => fav.search !== action.payload.title
       );
     },
+    editFav: (state, action) => {
+      const {newSearch, newResult, newSort} = action.payload;
+      console.log(action.payload)
+
+      // const newArr = state.favs.map((item) =>
+      //   item.search === prevState
+      //     ? {
+      //         search: newState,
+      //         results,
+      //         sort,
+      //       }
+      //     : item
+      // );
+      // return { ...state, favs: newArr };
+    },
   },
 });
 
-export const { addFav, removeFav } = favsSlice.actions;
+export const { addFav, removeFav, editFav } = favsSlice.actions;
 
 export default favsSlice.reducer;  
 
 
 
-// editItem: (state, action) => {
-    //   const { prevState, newState, results, sort } = action.payload;
-    //   const isDuplicate = state.value.some(
-    //     (item) =>
-    //       item.search.toLowerCase().trim() === newState.toLowerCase().trim()
-    //   );
-    //   if (isDuplicate) {
-    //     return state;
-    //   }
-
-    //   const newArr = state.value.map((item) =>
-    //     item.search === prevState
-    //       ? {
-    //           search: newState,
-    //           results,
-    //           sort,
-    //         }
-    //       : item
-    //   );
-    //   return { ...state, value: newArr };
-    // },
