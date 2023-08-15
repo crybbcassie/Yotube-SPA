@@ -30,15 +30,12 @@ export const favsSlice = createSlice({
         results: 10,
         sort: "relevance",
       });
-      console.log(action.payload);
     },
     removeFav: (state, action) => {
-      const newArr = state.value.filter(
-        (item) => item.search !== action.payload
+      state.favs = state.favs.filter(
+        (fav) => fav.search !== action.payload.title
       );
-      return { ...state, value: newArr };
     },
-
   },
 });
 

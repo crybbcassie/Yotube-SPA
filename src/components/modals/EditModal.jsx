@@ -23,7 +23,7 @@ export default function EditModal({ open, onCancel }){
       <>
         <Modal
           title="Edit Youtube search path"
-          visible={open}
+          open={open}
           
           onCancel={onCancel}
           style={{ maxWidth: "400px" }}

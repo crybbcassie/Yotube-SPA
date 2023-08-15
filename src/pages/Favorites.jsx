@@ -4,11 +4,13 @@ import EditModal  from "../components/modals/EditModal";
 import Header from '../components/header/Header'
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import {removeFav} from '../redux/favsSlice'
 
 
 export default function Favorites(){
-  const btn = `Back to search`;
+const btn = `Back to search`;
+const dispatch = useDispatch()
 const favs = useSelector((state) => state.favs.favs);
 console.log(favs);
 
@@ -50,18 +52,16 @@ console.log(favs);
            style={{ fontSize: "25px", cursor: "pointer", textAlign: 'ceneter' }}
          />
        ),
-      //  onCell: (record) => ({
-      //    onClick: () => dispatch(removeVideo(record)),
-      //  }),
+       onCell: (record) => ({
+         onClick: () => dispatch(removeFav(record)),
+       }),
      },
    ];
 
-   const data = [
-     {
-       key: 'qew',
-       title: 'qfffffffffffffffqq'
-     },
-   ];
+ const data = favs.map((fav) => ({
+   key: fav.search,
+   title: fav.search,
+ }));
 
   const navigate = useNavigate();
   function nav(){
