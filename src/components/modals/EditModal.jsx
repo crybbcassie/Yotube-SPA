@@ -13,8 +13,8 @@ import {
 import { useState } from 'react';
 import cl from '../styles/Components.module.css'
 
-export default function EditModal({ open, onCancel }){
-     const [inputValue, setInputValue] = useState(1);
+export default function EditModal({ open, onCancel, record }){
+     const [inputValue, setInputValue] = useState(record.result);
      const onChange = (newValue) => {
        setInputValue(newValue);
      };
@@ -24,12 +24,11 @@ export default function EditModal({ open, onCancel }){
         <Modal
           title="Edit Youtube search path"
           open={open}
-          
           onCancel={onCancel}
           style={{ maxWidth: "400px" }}
         >
           <div className={cl.modal}>
-            <Input placeholder="Basic usage" size="large" disabled />
+            <Input placeholder={record.title} size="large" disabled />
             <Input placeholder="Edit your search here" size="large" />
             <Select
               size="large"
@@ -44,16 +43,24 @@ export default function EditModal({ open, onCancel }){
               }
               options={[
                 {
-                  value: "jack",
-                  label: "Jack",
+                  value: "relevance",
+                  label: "Relevance",
                 },
                 {
-                  value: "lucy",
-                  label: "Lucy",
+                  value: "date",
+                  label: "Date",
                 },
                 {
-                  value: "tom",
-                  label: "Tom",
+                  value: "rating",
+                  label: "Rating",
+                },
+                {
+                  value: "viewCount",
+                  label: "Views",
+                },
+                {
+                  value: "title",
+                  label: "Title",
                 },
               ]}
             />

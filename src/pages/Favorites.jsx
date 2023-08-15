@@ -12,10 +12,17 @@ export default function Favorites(){
 const btn = `Back to search`;
 const dispatch = useDispatch()
 const favs = useSelector((state) => state.favs.favs);
-console.log(favs);
+
+  const [selectedRecord, setSelectedRecord] = useState({
+    key: "1",
+    title: "Barbie 2023",
+    result: 10,
+    sort: "relevance",
+  });
 
   const [open, setVisible] = useState(false);
-  const handleBuyClick = () => {
+  const handleBuyClick = (record) => {
+    setSelectedRecord(record);
     setVisible(true);
   };
 
@@ -36,12 +43,12 @@ console.log(favs);
        render: () => (
          <EditTwoTone
            style={{ fontSize: "25px", cursor: "pointer" }}
-            onClick={handleBuyClick}
+           onClick={handleBuyClick}
          />
        ),
-        onCell: (record) => ({
-          onClick: () => handleBuyClick(record),
-        }),
+       onCell: (record) => ({
+         onClick: () => handleBuyClick(record),
+       }),
      },
      {
        title: "Delete",
@@ -49,7 +56,7 @@ console.log(favs);
        key: "delete",
        render: () => (
          <DeleteTwoTone
-           style={{ fontSize: "25px", cursor: "pointer", textAlign: 'ceneter' }}
+           style={{ fontSize: "25px", cursor: "pointer" }}
          />
        ),
        onCell: (record) => ({
@@ -61,6 +68,8 @@ console.log(favs);
  const data = favs.map((fav) => ({
    key: fav.search,
    title: fav.search,
+   result: fav.result,
+   sort: fav.sort
  }));
 
   const navigate = useNavigate();
@@ -70,15 +79,19 @@ console.log(favs);
 
     return (
       <>
-        <Header btn={btn} nav={nav}/>
+        <Header btn={btn} nav={nav} />
         <div className="main favs">
           <h1 className={cl.fav}>Favorites</h1>
           <Table
             dataSource={data}
             columns={columns}
-            style={{ width: "inherit" }}
+            style={{ width: "inherit"}}
           />
-          <EditModal open={open} onCancel={handleCancel} />
+          <EditModal
+            open={open}
+            onCancel={handleCancel}
+            record={selectedRecord}
+          />
         </div>
       </>
     );
