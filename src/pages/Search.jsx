@@ -15,13 +15,12 @@ import Header from '../components/header/Header'
 import { useNavigate } from "react-router-dom";
 import cl from '../components/styles/Components.module.css'
 import { fetchVideos } from "../redux/videoSlice";
-import CardVideo from '../components/layout/CardVideo'
-import ListVideo from '../components/layout/ListVideo'
+import {CardVideo, ListVideo} from '../components/layout/index'
+import { addFav } from "../redux/favsSlice";
 
 export default function Search(){
 const [query, setQuery] = useState("");
 const videos = useSelector((state) => state.videos.videos);
-console.log(videos)
 const [isFavorite, setIsFavorite] = useState(false);
 const [selectedOption, setSelectedOption] = useState("List");
 
@@ -32,10 +31,6 @@ const handleOptionChange = (value) => {
 const handleSearch = () => {
     dispatch(fetchVideos({ search: query, results: 10, sort: "relevance" }));
   };
-
- const handleFavorite = () => {
-   setIsFavorite(!isFavorite);
- };
   const dispatch = useDispatch();
   const btn = `Favorites ♡`;
 
@@ -44,6 +39,12 @@ const handleSearch = () => {
     function nav() {
       navigate("/youtube-spa/favorites");
     }
+
+  const handleFavorite = () => {
+    setIsFavorite(!isFavorite);
+    if (!isFavorite) dispatch(addFav(query))
+  };
+
 
     return (
       <>
@@ -83,19 +84,19 @@ const handleSearch = () => {
               selected={selectedOption}
               onChange={handleOptionChange}
             />
-          </div> 
+          </div>
           <Row gutter={[8, 16]}>
-          {videos &&
-            videos.map((video) =>
-              selectedOption === "List" ? (
-                <ListVideo video={video} />
-              ) : (
+            {videos &&
+              videos.map((video) =>
+                selectedOption === "List" ? (
+                  <ListVideo video={video} key={video.etag} />
+                ) : (
                   <Col span={6} key={video.etag}>
                     <CardVideo video={video} />
                   </Col>
-              )
-            )}
-            </Row>
+                )
+              )}
+          </Row>
         </div>
       </>
     );

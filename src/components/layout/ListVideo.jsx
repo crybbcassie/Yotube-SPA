@@ -11,7 +11,7 @@ export default function ListVideo({video}) {
           width={300}
           height={220}
         />
-        <div class={cl.videoDescription}>
+        <div className={cl.videoDescription}>
           <h2>{video.snippet.title}</h2>
           <p>{video.snippet.description}</p>
         </div>

@@ -4,12 +4,15 @@ import EditModal  from "../components/modals/EditModal";
 import Header from '../components/header/Header'
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 
 export default function Favorites(){
-    const btn = `Back to search`;
+  const btn = `Back to search`;
+const favs = useSelector((state) => state.favs.favs);
+console.log(favs);
 
-  const [visible, setVisible] = useState(false);
+  const [open, setVisible] = useState(false);
   const handleBuyClick = () => {
     setVisible(true);
   };
@@ -44,7 +47,7 @@ export default function Favorites(){
        key: "delete",
        render: () => (
          <DeleteTwoTone
-           style={{ fontSize: "25px", cursor: "pointer" }}
+           style={{ fontSize: "25px", cursor: "pointer", textAlign: 'ceneter' }}
          />
        ),
       //  onCell: (record) => ({
@@ -75,7 +78,7 @@ export default function Favorites(){
             columns={columns}
             style={{ width: "inherit" }}
           />
-          <EditModal open={visible} onCancel={handleCancel} />
+          <EditModal open={open} onCancel={handleCancel} />
         </div>
       </>
     );

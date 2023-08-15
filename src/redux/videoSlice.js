@@ -18,12 +18,6 @@ export const fetchVideos = createAsyncThunk(
           },
         }
       );
-      const videos = response.data.items.map((item) => ({
-        id: item.id.videoId,
-        title: item.snippet.title,
-        description: item.snippet.description,
-        thumbnail: item.snippet.thumbnails.default.url,
-      }));
       return response.data.items;
       // console.log({ data: response.data.items, search: search });
       // return { data: response.data.items, search: search };
