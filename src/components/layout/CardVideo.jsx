@@ -1,5 +1,6 @@
 import {Card} from '../antd/antd'
 import cl from '../styles/Components.module.css'
+import handleVideoClick from  '../../utils/helpers'
 
 export default function CardVideo({ video }) {
   const { Meta } = Card;
@@ -13,6 +14,7 @@ export default function CardVideo({ video }) {
   return (
     <div className={cl.cards}>
       <Card
+        onClick={() => handleVideoClick(video.id.videoId)}
         hoverable
         style={{
           width: 220,

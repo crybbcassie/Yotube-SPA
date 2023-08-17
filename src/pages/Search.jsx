@@ -24,6 +24,8 @@ const videos = useSelector((state) => state.videos.videos);
 const [isFavorite, setIsFavorite] = useState(false);
 const [selectedOption, setSelectedOption] = useState("List");
 
+console.log(videos)
+
 const handleOptionChange = (value) => {
   setSelectedOption(value);
 };
@@ -44,8 +46,6 @@ const handleSearch = () => {
     setIsFavorite(!isFavorite);
     if (!isFavorite) dispatch(addFav(query))
   };
-
-
     return (
       <>
         <Header btn={btn} nav={nav} />

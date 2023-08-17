@@ -1,4 +1,5 @@
 import cl from '../styles/Components.module.css'
+import handleVideoClick from "../../utils/helpers";
 
 export default function ListVideo({video}) {
 
@@ -12,7 +13,9 @@ export default function ListVideo({video}) {
           height={220}
         />
         <div className={cl.videoDescription}>
-          <h2>{video.snippet.title}</h2>
+          <h2 onClick={() => handleVideoClick(video.id.videoId)} style={{cursor: 'pointer'}}>
+            {video.snippet.title}
+          </h2>
           <p>{video.snippet.description}</p>
         </div>
       </div>
