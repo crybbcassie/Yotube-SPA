@@ -38,6 +38,7 @@ const handleSubmit = () => {
     newSort: sort,
   };
   dispatch(editFav(newData));
+  onCancel();
 };
 
   const dispatch = useDispatch()

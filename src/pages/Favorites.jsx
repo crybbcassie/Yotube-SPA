@@ -12,7 +12,6 @@ export default function Favorites(){
 const btn = `Back to search`;
 const dispatch = useDispatch()
 const favs = useSelector((state) => state.favs.favs);
-console.log(favs)
 
   const [selectedRecord, setSelectedRecord] = useState({});
 

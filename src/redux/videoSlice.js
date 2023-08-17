@@ -19,8 +19,6 @@ export const fetchVideos = createAsyncThunk(
         }
       );
       return response.data.items;
-      // console.log({ data: response.data.items, search: search });
-      // return { data: response.data.items, search: search };
     } catch (e) {
       return rejectWithValue(e.message);
     }
