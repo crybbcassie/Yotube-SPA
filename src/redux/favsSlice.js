@@ -30,12 +30,19 @@ export const favsSlice = createSlice({
       );
     },
     editFav: (state, action) => {
-       const { newSearch, newResult, newSort } = action.payload;
-      state.favs = state.favs.map((fav) => {
-        return fav.id === action.payload.id
-          ? { ...fav, search: newSearch, result: newResult, sort: newSort }
-          : fav;
-      });
+  const { newSearch, newResult, newSort } = action.payload;
+  const existingFav = state.favs.find(fav => fav.id === action.payload.id && fav.title === action.payload.title);
+  if (existingFav) {
+    existingFav.search = newSearch;
+    existingFav.result = newResult;
+    existingFav.sort = newSort;
+  } else {
+    state.favs = state.favs.map((fav) => {
+      return fav.id === action.payload.id
+        ? { ...fav, search: newSearch, result: newResult, sort: newSort }
+        : fav;
+    });
+  }
     }
   },
 });

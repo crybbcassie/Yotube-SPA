@@ -24,6 +24,11 @@ const favs = useSelector((state) => state.favs.favs);
   const handleCancel = () => {
     setVisible(false);
   };
+    const navigate = useNavigate();
+    function nav() {
+      navigate("/youtube-spa/search");
+    }
+
    const columns = [
      {
        title: "Title",
@@ -50,9 +55,7 @@ const favs = useSelector((state) => state.favs.favs);
        dataIndex: "delete",
        key: "delete",
        render: () => (
-         <DeleteTwoTone
-           style={{ fontSize: "25px", cursor: "pointer" }}
-         />
+         <DeleteTwoTone style={{ fontSize: "25px", cursor: "pointer" }} />
        ),
        onCell: (record) => ({
          onClick: () => dispatch(removeFav(record)),
@@ -67,11 +70,6 @@ const favs = useSelector((state) => state.favs.favs);
    result: fav.result,
    sort: fav.sort
  }));
-
-  const navigate = useNavigate();
-  function nav(){
-    navigate('/youtube-spa/search')
-   }
 
     return (
       <>

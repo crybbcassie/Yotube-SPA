@@ -24,8 +24,6 @@ const videos = useSelector((state) => state.videos.videos);
 const [isFavorite, setIsFavorite] = useState(false);
 const [selectedOption, setSelectedOption] = useState("List");
 
-console.log(videos)
-
 const handleOptionChange = (value) => {
   setSelectedOption(value);
 };
@@ -34,7 +32,7 @@ const handleSearch = () => {
     dispatch(fetchVideos({ search: query, result: 10, sort: "relevance" }));
   };
   const dispatch = useDispatch();
-  const btn = `Favorites ♡`;
+  const btn = `Go to favorites`;
 
 
     const navigate = useNavigate();
@@ -44,7 +42,9 @@ const handleSearch = () => {
 
   const handleFavorite = () => {
     setIsFavorite(!isFavorite);
-    if (!isFavorite) dispatch(addFav(query))
+    if (!isFavorite) {
+      dispatch(addFav(query))
+    }
   };
     return (
       <>
