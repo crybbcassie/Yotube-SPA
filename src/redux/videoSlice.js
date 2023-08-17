@@ -3,7 +3,7 @@ import axios from "axios";
 
 export const fetchVideos = createAsyncThunk(
   "videos/fetchVideos",
-  async function ({ search, results, sort }, { rejectWithValue }) {
+  async function ({ search, result, sort }, { rejectWithValue }) {
     try {
       const response = await axios.get(
         "https://www.googleapis.com/youtube/v3/search",
@@ -12,7 +12,7 @@ export const fetchVideos = createAsyncThunk(
             key: "AIzaSyCsNXupWYNLK2vB5E1zhdS9TdtsrOwDkAM",
             part: "snippet",
             type: "video",
-            maxResults: results,
+            maxResults: result,
             q: search,
             sort: sort,
           },

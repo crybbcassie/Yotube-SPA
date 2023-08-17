@@ -12,7 +12,7 @@ export async function login(userLoginData, navigate, updateToken) {
     });
     localStorage.setItem("token", result.data.token);
     updateToken(result.data.token);
-    navigate("/youtube-spa/main");
+    navigate("/youtube-spa/search");
   } catch (e) {
     if (e && e.response && e.response.data) {
       console.log(e.response.data.message);

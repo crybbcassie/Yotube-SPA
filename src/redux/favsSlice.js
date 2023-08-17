@@ -1,19 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
+import {v4} from 'uuid'
 
 const initialState = {
   favs: [
     {
+      id: v4(),
       search: "How to play chess?",
-      result: 10,
-      sort: "relevance",
-    },
-    {
-      search: "How to receive princess treatment",
-      result: 10,
-      sort: "relevance",
-    },
-    {
-      search: "Barbie 2023",
       result: 10,
       sort: "relevance",
     },
@@ -26,8 +18,9 @@ export const favsSlice = createSlice({
   reducers: {
     addFav: (state, action) => {
       state.favs.push({
+        id: v4(),
         search: action.payload,
-        results: 10,
+        result: 10,
         sort: "relevance",
       });
     },
@@ -37,20 +30,13 @@ export const favsSlice = createSlice({
       );
     },
     editFav: (state, action) => {
-      const {newSearch, newResult, newSort} = action.payload;
-      console.log(action.payload)
-
-      // const newArr = state.favs.map((item) =>
-      //   item.search === prevState
-      //     ? {
-      //         search: newState,
-      //         results,
-      //         sort,
-      //       }
-      //     : item
-      // );
-      // return { ...state, favs: newArr };
-    },
+       const { newSearch, newResult, newSort } = action.payload;
+      state.favs = state.favs.map((fav) => {
+        return fav.id === action.payload.id
+          ? { ...fav, search: newSearch, result: newResult, sort: newSort }
+          : fav;
+      });
+    }
   },
 });
 

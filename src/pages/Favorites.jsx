@@ -12,13 +12,9 @@ export default function Favorites(){
 const btn = `Back to search`;
 const dispatch = useDispatch()
 const favs = useSelector((state) => state.favs.favs);
+console.log(favs)
 
-  const [selectedRecord, setSelectedRecord] = useState({
-    key: "1",
-    title: "Barbie 2023",
-    result: 10,
-    sort: "relevance",
-  });
+  const [selectedRecord, setSelectedRecord] = useState({});
 
   const [open, setVisible] = useState(false);
   const handleBuyClick = (record) => {
@@ -66,6 +62,7 @@ const favs = useSelector((state) => state.favs.favs);
    ];
 
  const data = favs.map((fav) => ({
+  id: fav.id,
    key: fav.search,
    title: fav.search,
    result: fav.result,

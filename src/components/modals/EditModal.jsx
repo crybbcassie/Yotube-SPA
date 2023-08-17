@@ -13,9 +13,10 @@ import { useDispatch } from "react-redux";
 import {editFav} from '../../redux/favsSlice'
 
 export default function EditModal({ open, onCancel, record }){
-const [search, setSearch] = useState("");
-const [sort, setSort] = useState("");
-const [result, setResult] = useState(10);
+const [prevSearch, setPrevSearch] = useState('')
+const [search, setSearch] = useState('');
+const [sort, setSort] = useState(record.sort);
+const [result, setResult] = useState(record.result);
 
 const onChangeInput = (newValue) => {
   setSearch(newValue);
@@ -31,6 +32,7 @@ const onChangeResult = (newValue) => {
 
 const handleSubmit = () => {
   const newData = {
+    id: record.id,
     newSearch: search,
     newResult: result,
     newSort: sort,
@@ -45,7 +47,7 @@ const handleSubmit = () => {
         open={open}
         onCancel={onCancel}
         style={{ maxWidth: "400px" }}
-        onOk={() => handleSubmit()} 
+        onOk={() => handleSubmit()}
       >
         <form className={cl.modal}>
           <Input placeholder={record.title} size="large" disabled />

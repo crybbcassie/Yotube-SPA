@@ -29,7 +29,7 @@ const handleOptionChange = (value) => {
 };
 
 const handleSearch = () => {
-    dispatch(fetchVideos({ search: query, results: 10, sort: "relevance" }));
+    dispatch(fetchVideos({ search: query, result: 10, sort: "relevance" }));
   };
   const dispatch = useDispatch();
   const btn = `Favorites ♡`;
