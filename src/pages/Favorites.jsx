@@ -35,6 +35,9 @@ const favs = useSelector((state) => state.favs.favs);
        dataIndex: "title",
        key: "title",
        width: 600,
+       onCell: (record) => ({
+         onClick: () => navigate(`/youtube-spa/request=${record.title}`),
+       }),
      },
      {
        title: "Edit",

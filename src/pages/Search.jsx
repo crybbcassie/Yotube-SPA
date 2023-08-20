@@ -1,51 +1,66 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Input,
   Space,
   Button,
   HeartOutlined,
   HeartTwoTone,
-  AppstoreOutlined,
-  BarsOutlined,
-  Segmented,
-  Row, Col
 } from "../components/antd/antd";
 import Header from '../components/header/Header'
-import { useNavigate } from "react-router-dom";
-import cl from '../components/styles/Components.module.css'
+import { useNavigate, useParams, useLocation } from "react-router-dom";
 import { fetchVideos } from "../redux/videoSlice";
-import {CardVideo, ListVideo} from '../components/layout/index'
-import { addFav } from "../redux/favsSlice";
+import { addFav, removeFav } from "../redux/favsSlice";
+import List from '../components/list/List'
 
 export default function Search(){
-const [query, setQuery] = useState("");
-const videos = useSelector((state) => state.videos.videos);
-const [isFavorite, setIsFavorite] = useState(false);
 const [selectedOption, setSelectedOption] = useState("List");
+const [query, setQuery] = useState({
+  search: "",
+});
+const videos = useSelector((state) => state.videos.videos);
+const favs = useSelector((state) => state.favs.favs)
+const dispatch = useDispatch();
+const btn = `Go to favorites`;
 
 const handleOptionChange = (value) => {
   setSelectedOption(value);
 };
 
-const handleSearch = () => {
+const { request } = useParams();
+
+  useEffect(() => {
+    if (request) {
+      setQuery(request);
+      dispatch(fetchVideos({ search: request, result: 10, sort: "relevance" }));
+    }
+  }, [request, dispatch]);
+
+  const handleSearch = () => {
     dispatch(fetchVideos({ search: query, result: 10, sort: "relevance" }));
   };
-  const dispatch = useDispatch();
-  const btn = `Go to favorites`;
-
 
     const navigate = useNavigate();
     function nav() {
       navigate("/youtube-spa/favorites");
     }
 
-  const handleFavorite = () => {
-    setIsFavorite(!isFavorite);
-    if (!isFavorite) {
-      dispatch(addFav(query))
-    }
-  };
+     const handleFavorite = (event) => {
+       event.stopPropagation();
+       dispatch(addFav(query.search));
+     };
+
+    const isFavorite = (str) => {
+      return (
+        (query.search ? false : true) ||
+        favs.some(
+          (item) =>
+            item.search.trim().toLowerCase() ===
+            query.search.trim().toLowerCase()
+        )
+      );
+    };
+
     return (
       <>
         <Header btn={btn} nav={nav} />
@@ -54,10 +69,22 @@ const handleSearch = () => {
             <Input
               size="large"
               placeholder="Enter a request"
-              onChange={(e) => setQuery(e.target.value)}
+              value={query.search}
+              onChange={(e) =>
+                setQuery(() => {
+                  return {
+                    search: e.target.value,
+                  };
+                })
+              }
               addonBefore={
-                <div onClick={handleFavorite}>
-                  {isFavorite ? (
+                <div
+                  onClick={handleFavorite}
+                  className={
+                    isFavorite(query.search) ? 'disabled' : ''
+                  }
+                >
+                  {isFavorite(query.search) ? (
                     <HeartTwoTone style={{ fontSize: "20px" }} />
                   ) : (
                     <HeartOutlined style={{ fontSize: "20px" }} />
@@ -69,34 +96,13 @@ const handleSearch = () => {
               Search
             </Button>
           </Space.Compact>
-          <div className={cl.layout}>
-            <Segmented
-              options={[
-                {
-                  value: "List",
-                  icon: <BarsOutlined />,
-                },
-                {
-                  value: "Kanban",
-                  icon: <AppstoreOutlined />,
-                },
-              ]}
-              selected={selectedOption}
-              onChange={handleOptionChange}
+          {videos.length > 0 && (
+            <List
+              videos={videos}
+              selectedOption={selectedOption}
+              handleOptionChange={handleOptionChange}
             />
-          </div>
-          <Row gutter={[8, 16]}>
-            {videos &&
-              videos.map((video) =>
-                selectedOption === "List" ? (
-                  <ListVideo video={video} key={video.etag} />
-                ) : (
-                  <Col span={6} key={video.etag}>
-                    <CardVideo video={video} />
-                  </Col>
-                )
-              )}
-          </Row>
+          )}
         </div>
       </>
     );
