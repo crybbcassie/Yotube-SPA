@@ -4,12 +4,13 @@ import axios from "axios";
 export const fetchVideos = createAsyncThunk(
   "videos/fetchVideos",
   async function ({ search, result, sort }, { rejectWithValue }) {
+    const apiKey = process.env.REACT_APP_API_KEY
     try {
       const response = await axios.get(
         "https://www.googleapis.com/youtube/v3/search",
         {
           params: {
-            key: "AIzaSyCsNXupWYNLK2vB5E1zhdS9TdtsrOwDkAM",
+            key: apiKey,
             part: "snippet",
             type: "video",
             maxResults: result,

@@ -26,12 +26,15 @@ export const favsSlice = createSlice({
     },
     removeFav: (state, action) => {
       state.favs = state.favs.filter(
-        (fav) => fav.search !== action.payload.title
+        (fav) => fav.search !== action.payload.search
       );
     },
     editFav: (state, action) => {
   const { newSearch, newResult, newSort } = action.payload;
-  const existingFav = state.favs.find(fav => fav.id === action.payload.id && fav.title === action.payload.title);
+  const existingFav = state.favs.find(
+    (fav) =>
+      fav.id === action.payload.id && fav.search === action.payload.search
+  );
   if (existingFav) {
     existingFav.search = newSearch;
     existingFav.result = newResult;

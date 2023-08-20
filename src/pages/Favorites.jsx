@@ -42,6 +42,7 @@ const favs = useSelector((state) => state.favs.favs);
        key: "search",
        width: 600,
        onCell: (record) => ({
+         style: { cursor: "pointer" },
          onClick: () => openFav(record),
        }),
      },
