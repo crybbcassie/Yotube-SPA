@@ -6,6 +6,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import {removeFav} from '../redux/favsSlice'
+import { fetchVideos } from "../redux/videoSlice";
 
 
 export default function Favorites(){
@@ -29,14 +30,19 @@ const favs = useSelector((state) => state.favs.favs);
       navigate("/youtube-spa/search");
     }
 
+  function openFav(record){
+    nav();
+    dispatch(fetchVideos(record))
+  }
+
    const columns = [
      {
        title: "Title",
-       dataIndex: "title",
-       key: "title",
+       dataIndex: "search",
+       key: "search",
        width: 600,
        onCell: (record) => ({
-         onClick: () => navigate(`/youtube-spa/request=${record.title}`),
+         onClick: () => openFav(record),
        }),
      },
      {
@@ -69,7 +75,7 @@ const favs = useSelector((state) => state.favs.favs);
  const data = favs.map((fav) => ({
   id: fav.id,
    key: fav.search,
-   title: fav.search,
+   search: fav.search,
    result: fav.result,
    sort: fav.sort
  }));

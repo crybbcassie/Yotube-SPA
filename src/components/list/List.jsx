@@ -8,13 +8,13 @@ import {
 import cl from "../styles/Components.module.css";
 import { CardVideo, ListVideo } from "../layout/index";
 
-export default function List({ selectedOption, handleOptionChange, videos}) {
+export default function List({ selectedOption, handleOptionChange, videos, onDemand}) {
   return (
     <>
       <div className={cl.layout}>
         <h3>
-          videos on demand 
-          {/* <span>{params.request}</span> */}
+          videos on demand
+          <span> {onDemand}</span>
         </h3>
         <Segmented
           options={[

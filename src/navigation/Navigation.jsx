@@ -19,7 +19,6 @@ export default function Navigation() {
       {token ? (
         <>
         <Route path="youtube-spa/search" element={<Search />} />
-        <Route path="/youtube-spa/search/:query" exact></Route>
         <Route path="youtube-spa/favorites" element={<Favorites />} />
         </>
       ) : (

@@ -18,6 +18,7 @@ const [selectedOption, setSelectedOption] = useState("List");
 const [query, setQuery] = useState({
   search: "",
 });
+const [onDemand, setOnDemand] = useState('')
 const videos = useSelector((state) => state.videos.videos);
 const favs = useSelector((state) => state.favs.favs)
 const dispatch = useDispatch();
@@ -32,12 +33,15 @@ const { request } = useParams();
   useEffect(() => {
     if (request) {
       setQuery(request);
-      dispatch(fetchVideos({ search: request, result: 10, sort: "relevance" }));
+      dispatch(fetchVideos({ search: query.search, result: 10, sort: "relevance" }));
     }
   }, [request, dispatch]);
 
   const handleSearch = () => {
-    dispatch(fetchVideos({ search: query, result: 10, sort: "relevance" }));
+    dispatch(
+      fetchVideos({ search: query.search, result: 10, sort: "relevance" })
+    );
+    setOnDemand(query.search);
   };
 
     const navigate = useNavigate();
@@ -98,6 +102,7 @@ const { request } = useParams();
           </Space.Compact>
           {videos.length > 0 && (
             <List
+              onDemand={onDemand}
               videos={videos}
               selectedOption={selectedOption}
               handleOptionChange={handleOptionChange}
