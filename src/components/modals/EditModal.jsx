@@ -24,7 +24,6 @@ const onChangeResult = (newValue) => {
 
 const handleSubmit = () => {
   const newData = {
-    id: record.id,
     newSearch: search,
     newResult: result,
     newSort: sort,
