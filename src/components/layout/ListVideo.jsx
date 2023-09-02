@@ -2,7 +2,6 @@ import cl from '../styles/Components.module.css'
 import handleVideoClick from "../../utils/helpers";
 
 export default function ListVideo({video}) {
-
   return (
     <div className={cl.videoList}>
       <div className={cl.videoItem}>

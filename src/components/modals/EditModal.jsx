@@ -1,12 +1,4 @@
-import {
-  Modal,
-  Input,
-  Select,
-  Col,
-  InputNumber,
-  Row,
-  Slider,
-} from "antd";
+import { Modal, Input, Select, Col, InputNumber, Row, Slider } from "antd";
 import { useState } from 'react';
 import cl from '../styles/Components.module.css';
 import { useDispatch } from "react-redux";
@@ -41,7 +33,8 @@ const handleSubmit = () => {
   onCancel();
 };
 
-  const dispatch = useDispatch()
+const dispatch = useDispatch()
+
     return (
       <Modal
         title="Edit Youtube search path"

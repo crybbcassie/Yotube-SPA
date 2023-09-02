@@ -27,11 +27,12 @@ const favs = useSelector((state) => state.favs.favs);
     setVisible(false);
   };
     const navigate = useNavigate();
-    function nav() {
+
+    const nav = () => {
       navigate("/youtube-spa/search");
     }
 
-  function openFav(record){
+  const openFav = (record) => {
     nav();
     dispatch(fetchVideos(record))
   }

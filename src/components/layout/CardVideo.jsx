@@ -4,7 +4,7 @@ import handleVideoClick from  '../../utils/helpers'
 
 export default function CardVideo({ video }) {
   const { Meta } = Card;
-    function shortStr(str) {
+    const shortStr = (str) => {
       if (str.length > 60) {
         return str.slice(0, 60) + "...";
       } else {

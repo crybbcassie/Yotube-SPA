@@ -40,7 +40,7 @@ const { request } = useParams();
   };
 
     const navigate = useNavigate();
-    function nav() {
+    const nav = () => {
       navigate("/youtube-spa/favorites");
     }
 

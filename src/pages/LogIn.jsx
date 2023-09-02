@@ -14,11 +14,11 @@ export default function LogIn({ onFormSwitch, updateToken }) {
     password: password,
   };
 
-  function handleSubmit(e) {
+  const handleSubmit = (e) => {
     e.preventDefault();
   }
 
-  function changePage() {
+  const changePage = () => {
     onFormSwitch("register");
     navigate("/youtube-spa/signup");
   }

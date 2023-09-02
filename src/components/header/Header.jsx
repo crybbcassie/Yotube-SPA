@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function Header({ btn, nav, ...props }) {
   const navigate = useNavigate();
-  function logOut() {
+  const logOut = () => {
     localStorage.removeItem("token");
     navigate("/youtube-spa");
     window.location.reload();

@@ -15,7 +15,7 @@ export default function SignUp({ onFormSwitch }) {
   };
   const [age, setAge] = useState(18);
 
-  function handleSubmit(e) {
+  const handleSubmit = (e) => {
     e.preventDefault();
   }
 
@@ -28,7 +28,7 @@ export default function SignUp({ onFormSwitch }) {
   };
     const navigate = useNavigate();
 
-    function changePage() {
+    const changePage = () => {
       onFormSwitch("login");
       navigate("/youtube-spa");
     }
