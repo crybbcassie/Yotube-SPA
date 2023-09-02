@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { Input, Button, Form, Checkbox } from "../components/antd/antd";
+import { Input, Button } from "antd";
 import { useNavigate } from "react-router-dom";
-import icon from  '../components/images/icon.svg'
+import icon from "../components/img/icon.svg";
 import {login} from '../utils/helpers'
 
 export default function LogIn({ onFormSwitch, updateToken }) {
@@ -14,11 +14,11 @@ export default function LogIn({ onFormSwitch, updateToken }) {
     password: password,
   };
 
-  function handleSubmit(e) {
+  const handleSubmit = (e) => {
     e.preventDefault();
   }
 
-  function changePage() {
+  const changePage = () => {
     onFormSwitch("register");
     navigate("/youtube-spa/signup");
   }

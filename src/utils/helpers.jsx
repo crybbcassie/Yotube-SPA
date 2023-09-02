@@ -1,9 +1,8 @@
 import axios from "axios";
 
 // login&register
-export async function login(userLoginData, navigate, updateToken) {
-  const loginUrl = "https://todo-redev.herokuapp.com/api/auth/login";
-  // const loginUrl = process.env.REACT_APP_URL_LOGIN;
+export  const login = async (userLoginData, navigate, updateToken) => {
+  const loginUrl = `${process.env.REACT_APP_URL}/auth/login`;
   try {
     const result = await axios.post(loginUrl, userLoginData, {
       headers: {
@@ -20,19 +19,18 @@ export async function login(userLoginData, navigate, updateToken) {
       console.log("An error occurred while logging in.");
     }
   }
-}
+};
 
-export async function register(userRegisterData, changePage) {
-  const registerUrl = "https://todo-redev.herokuapp.com/api/users/register";
-  // const registerUrl = process.env.REACT_APP_URL_REGISTER;
+export const register = async (userRegisterData, changePage) => {
+  const registerUrl = `${process.env.REACT_APP_URL}/users/register`;
   try {
     const result = await axios.post(registerUrl, userRegisterData, {
       headers: {
         "Content-Type": "application/json",
       },
     });
-      changePage();
-      console.log(result)
+    changePage();
+    console.log(result);
   } catch (e) {
     if (e && e.response && e.response.data) {
       console.log(e.response.data.message);
@@ -40,7 +38,7 @@ export async function register(userRegisterData, changePage) {
       console.log("An error occurred while register.");
     }
   }
-}
+};
 
   export default function handleVideoClick (videoId) {
     window.open(`https://www.youtube.com/watch?v=${videoId}`, "_blank");

@@ -1,4 +1,5 @@
-import { Table, EditTwoTone, DeleteTwoTone } from "../components/antd/antd";
+import { EditTwoTone, DeleteTwoTone } from '@ant-design/icons';
+import { Table } from "antd";
 import cl from '../components/styles/Components.module.css'
 import EditModal  from "../components/modals/EditModal";
 import Header from '../components/header/Header'
@@ -19,6 +20,7 @@ const favs = useSelector((state) => state.favs.favs);
   const [open, setVisible] = useState(false);
   const handleBuyClick = (record) => {
     setSelectedRecord(record);
+    console.log(record)
     setVisible(true);
   };
 
@@ -30,7 +32,7 @@ const favs = useSelector((state) => state.favs.favs);
       navigate("/youtube-spa/search");
     }
 
-  function openFav(record){
+  const openFav = (record) => {
     nav();
     dispatch(fetchVideos(record))
   }
@@ -73,13 +75,13 @@ const favs = useSelector((state) => state.favs.favs);
      },
    ];
 
- const data = favs.map((fav) => ({
-  id: fav.id,
-   key: fav.search,
-   search: fav.search,
-   result: fav.result,
-   sort: fav.sort
- }));
+const data = favs.map(({ id, search, result, sort }) => ({
+  id,
+  key: search,
+  search,
+  result,
+  sort,
+}));
 
     return (
       <>
