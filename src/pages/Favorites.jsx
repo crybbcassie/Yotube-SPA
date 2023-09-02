@@ -75,13 +75,13 @@ const favs = useSelector((state) => state.favs.favs);
      },
    ];
 
- const data = favs.map((fav) => ({
-  id: fav.id,
-   key: fav.search,
-   search: fav.search,
-   result: fav.result,
-   sort: fav.sort
- }));
+const data = favs.map(({ id, search, result, sort }) => ({
+  id,
+  key: search,
+  search,
+  result,
+  sort,
+}));
 
     return (
       <>

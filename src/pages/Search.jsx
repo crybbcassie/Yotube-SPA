@@ -51,7 +51,7 @@ const { request } = useParams();
 
     const isFavorite = (str) => {
       return (
-        (query.search ? false : true) ||
+        (!query.search) ||
         favs.some(
           (item) =>
             item.search.trim().toLowerCase() ===
