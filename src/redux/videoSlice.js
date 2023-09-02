@@ -5,20 +5,18 @@ export const fetchVideos = createAsyncThunk(
   "videos/fetchVideos",
   async function ({ search, result, sort }, { rejectWithValue }) {
     const apiKey = process.env.REACT_APP_API_KEY
+    const googleSearch = process.env.REACT_APP_GOOGLE_SEARCH;
     try {
-      const response = await axios.get(
-        "https://www.googleapis.com/youtube/v3/search",
-        {
-          params: {
-            key: apiKey,
-            part: "snippet",
-            type: "video",
-            maxResults: result,
-            q: search,
-            sort: sort,
-          },
-        }
-      );
+      const response = await axios.get(googleSearch, {
+        params: {
+          key: apiKey,
+          part: "snippet",
+          type: "video",
+          maxResults: result,
+          q: search,
+          sort: sort,
+        },
+      });
       return response.data.items;
     } catch (e) {
       return rejectWithValue(e.message);

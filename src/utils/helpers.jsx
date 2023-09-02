@@ -2,8 +2,7 @@ import axios from "axios";
 
 // login&register
 export async function login(userLoginData, navigate, updateToken) {
-  const loginUrl = "https://todo-redev.herokuapp.com/api/auth/login";
-  // const loginUrl = process.env.REACT_APP_URL_LOGIN;
+  const loginUrl = `${process.env.REACT_APP_URL}auth/login`;
   try {
     const result = await axios.post(loginUrl, userLoginData, {
       headers: {
@@ -23,8 +22,7 @@ export async function login(userLoginData, navigate, updateToken) {
 }
 
 export async function register(userRegisterData, changePage) {
-  const registerUrl = "https://todo-redev.herokuapp.com/api/users/register";
-  // const registerUrl = process.env.REACT_APP_URL_REGISTER;
+  const registerUrl = `${process.env.REACT_APP_URL}users/register`;
   try {
     const result = await axios.post(registerUrl, userRegisterData, {
       headers: {
