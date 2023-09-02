@@ -1,5 +1,10 @@
-import { Segmented, Row, Col } from "antd";
-import { AppstoreOutlined, BarsOutlined } from "@ant-design/icons";
+import {
+  AppstoreOutlined,
+  BarsOutlined,
+  Segmented,
+  Row,
+  Col,
+} from "../antd/antd";
 import cl from "../styles/Components.module.css";
 import { CardVideo, ListVideo } from "../layout/index";
 

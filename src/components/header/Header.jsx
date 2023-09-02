@@ -1,12 +1,11 @@
 import cl from "../styles/Components.module.css";
-import icon from "../img/icon.svg";
-import { Button } from 'antd'
+import icon from "../images/icon.svg";
+import { Button } from '../antd/antd'
 import { useNavigate } from "react-router-dom";
 
 export default function Header({ btn, nav, ...props }) {
   const navigate = useNavigate();
-
-  const logOut = () => {
+  function logOut() {
     localStorage.removeItem("token");
     navigate("/youtube-spa");
     window.location.reload();

@@ -1,18 +1,16 @@
-import {Card} from 'antd'
+import {Card} from '../antd/antd'
 import cl from '../styles/Components.module.css'
 import handleVideoClick from  '../../utils/helpers'
 
 export default function CardVideo({ video }) {
   const { Meta } = Card;
-
-    const shortStr = (str) => {
+    function shortStr(str) {
       if (str.length > 60) {
         return str.slice(0, 60) + "...";
       } else {
         return str;
       }
     }
-    
   return (
     <div className={cl.cards}>
       <Card

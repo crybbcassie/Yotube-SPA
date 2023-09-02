@@ -6,7 +6,7 @@ export default function Navigation() {
   const [token, setToken] = useState(localStorage.getItem("token"));
   const [currName, setCurrName] = useState("login");
 
-  const toggleForm = (currName) => {
+  function toggleForm(currName) {
     setCurrName(currName);
   }
 

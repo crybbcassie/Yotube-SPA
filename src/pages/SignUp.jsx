@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Input, Button, Radio, InputNumber } from "antd";
-import icon from "../components/img/icon.svg";
+import { Input, Button, Radio, InputNumber } from "../components/antd/antd";
+import icon from "../components/images/icon.svg";
 import { register } from "../utils/helpers";
 
 
@@ -10,13 +10,12 @@ export default function SignUp({ onFormSwitch }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [gender, setGender] = useState("male");
-
   const onChangeGender = (e) => {
     setGender(e.target.value);
   };
   const [age, setAge] = useState(18);
 
-  const handleSubmit = (e) => {
+  function handleSubmit(e) {
     e.preventDefault();
   }
 
@@ -29,7 +28,7 @@ export default function SignUp({ onFormSwitch }) {
   };
     const navigate = useNavigate();
 
-    const changePage = () => {
+    function changePage() {
       onFormSwitch("login");
       navigate("/youtube-spa");
     }
