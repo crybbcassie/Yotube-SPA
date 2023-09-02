@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Input, Button, Form, Checkbox } from "../components/antd/antd";
+import { Input, Button } from "antd";
 import { useNavigate } from "react-router-dom";
 import icon from  '../components/images/icon.svg'
 import {login} from '../utils/helpers'

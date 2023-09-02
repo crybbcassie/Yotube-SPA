@@ -1,4 +1,4 @@
-import {Card} from '../antd/antd'
+import {Card} from 'antd'
 import cl from '../styles/Components.module.css'
 import handleVideoClick from  '../../utils/helpers'
 

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Input, Button, Radio, InputNumber } from "../components/antd/antd";
+import { Input, Button, Radio, InputNumber } from "antd";
 import icon from "../components/images/icon.svg";
 import { register } from "../utils/helpers";
 

@@ -1,12 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import {
-  Input,
-  Space,
-  Button,
-  HeartOutlined,
-  HeartTwoTone,
-} from "../components/antd/antd";
+import { Input, Space, Button } from "antd";
+import { HeartOutlined, HeartTwoTone } from "@ant-design/icons";
 import Header from '../components/header/Header'
 import { useNavigate, useParams, useLocation } from "react-router-dom";
 import { fetchVideos } from "../redux/videoSlice";

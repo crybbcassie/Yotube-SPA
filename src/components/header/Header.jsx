@@ -1,6 +1,6 @@
 import cl from "../styles/Components.module.css";
 import icon from "../images/icon.svg";
-import { Button } from '../antd/antd'
+import { Button } from 'antd'
 import { useNavigate } from "react-router-dom";
 
 export default function Header({ btn, nav, ...props }) {

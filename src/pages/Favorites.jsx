@@ -1,4 +1,5 @@
-import { Table, EditTwoTone, DeleteTwoTone } from "../components/antd/antd";
+import { Table } from "antd";
+import { EditTwoTone, DeleteTwoTone } from "@ant-design/icons";
 import cl from '../components/styles/Components.module.css'
 import EditModal  from "../components/modals/EditModal";
 import Header from '../components/header/Header'

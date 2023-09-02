@@ -6,7 +6,7 @@ import {
   InputNumber,
   Row,
   Slider,
-} from "../antd/antd";
+} from "antd";
 import { useState } from 'react';
 import cl from '../styles/Components.module.css';
 import { useDispatch } from "react-redux";
