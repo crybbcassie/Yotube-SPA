@@ -7,6 +7,7 @@ import { useNavigate, useParams, useLocation } from "react-router-dom";
 import { fetchVideos } from "../redux/videoSlice";
 import { addFav, removeFav } from "../redux/favsSlice";
 import List from '../components/list/List'
+import EditModal from "../components/modals/EditModal";
 
 export default function Search(){
 const [selectedOption, setSelectedOption] = useState("List");
@@ -28,13 +29,13 @@ const { request } = useParams();
   useEffect(() => {
     if (request) {
       setQuery(request);
-      dispatch(fetchVideos({ search: query.search, result: 10, sort: "relevance" }));
+      dispatch(fetchVideos(record));
     }
   }, [request, dispatch]);
 
   const handleSearch = () => {
     dispatch(
-      fetchVideos({ search: query.search, result: 10, sort: "relevance" })
+      fetchVideos(record)
     );
     setOnDemand(query.search);
   };
@@ -60,6 +61,17 @@ const { request } = useParams();
       );
     };
 
+        const [open, setVisible] = useState(false);
+        const handleBuyClick = (record) => {
+          // setSelectedRecord(record);
+          setVisible(true);
+        };
+
+        const handleCancel = () => {
+          setVisible(false);
+        };
+      const record = { search: query.search, result: 10, sort: "relevance" };
+
     return (
       <>
         <Header btn={btn} nav={nav} />
@@ -79,15 +91,18 @@ const { request } = useParams();
               addonBefore={
                 <div
                   onClick={handleFavorite}
-                  className={
-                    isFavorite(query.search) ? 'disabled' : ''
-                  }
+                  className={isFavorite(query.search) ? "disabled" : ""}
                 >
                   {isFavorite(query.search) ? (
                     <HeartTwoTone style={{ fontSize: "20px" }} />
                   ) : (
                     <HeartOutlined style={{ fontSize: "20px" }} />
                   )}
+                  <EditModal
+                    open={open}
+                    onCancel={handleCancel}
+                    record={record}
+                  />
                 </div>
               }
             />

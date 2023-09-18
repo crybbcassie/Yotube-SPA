@@ -1,26 +1,16 @@
 import { Modal, Input, Select, Col, InputNumber, Row, Slider } from "antd";
-import { useState } from 'react';
+import { useState, useEffect } from "react";
 import cl from '../styles/Components.module.css';
 import { useDispatch } from "react-redux";
 import {editFav} from '../../redux/favsSlice'
 
 export default function EditModal({ open, onCancel, record }){
-const [prevSearch, setPrevSearch] = useState('')
-const [search, setSearch] = useState('');
+const [prevSearch, setPrevSearch] = useState(record.search)
+const [search, setSearch] = useState(prevSearch);
 const [sort, setSort] = useState(record.sort);
 const [result, setResult] = useState(record.result);
 
-const onChangeInput = (newValue) => {
-  setSearch(newValue);
-};
-
-const onChangeSort = (newValue) => {
-  setSort(newValue);
-};
-
-const onChangeResult = (newValue) => {
-  setResult(newValue);
-};
+const dispatch = useDispatch();
 
 const handleSubmit = () => {
   const newData = {
@@ -33,7 +23,13 @@ const handleSubmit = () => {
   onCancel();
 };
 
-const dispatch = useDispatch()
+useEffect(() => {
+  setPrevSearch(record.search);
+  setSearch(prevSearch);
+  setSort(record.sort);
+  setResult(record.result);
+}, [record]);
+
 
     return (
       <Modal
@@ -44,12 +40,12 @@ const dispatch = useDispatch()
         onOk={() => handleSubmit()}
       >
         <form className={cl.modal}>
-          <Input placeholder={record.title} size="large" disabled />
+          <Input placeholder={prevSearch} size="large" disabled />
           <Input
             placeholder="Edit your search here"
             size="large"
-            value={search}
-            onChange={(e) => onChangeInput(e.target.value)}
+            value={prevSearch}
+            onChange={(e) => setSearch(e.target.value)}
           />
           <Select
             size="large"
@@ -58,7 +54,7 @@ const dispatch = useDispatch()
             placeholder="Sort"
             optionFilterProp="children"
             value={sort}
-            onChange={(value) => onChangeSort(value)}
+            onChange={(value) => setSort(value)}
             filterOption={(input, option) =>
               (option?.label ?? "").toLowerCase().includes(input.toLowerCase())
             }
@@ -91,7 +87,7 @@ const dispatch = useDispatch()
                 style={{ width: "160px" }}
                 min={1}
                 max={25}
-                onChange={onChangeResult}
+                onChange={(value) => setResult(value)}
                 value={typeof result === "number" ? result : 0}
               />
             </Col>
@@ -100,7 +96,7 @@ const dispatch = useDispatch()
                 min={1}
                 max={20}
                 value={result}
-                onChange={onChangeResult}
+                onChange={(value) => setResult(value)}
               />
             </Col>
           </Row>

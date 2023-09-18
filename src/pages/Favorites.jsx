@@ -16,7 +16,6 @@ const dispatch = useDispatch()
 const favs = useSelector((state) => state.favs.favs);
 
   const [selectedRecord, setSelectedRecord] = useState({});
-
   const [open, setVisible] = useState(false);
   const handleBuyClick = (record) => {
     setSelectedRecord(record);
