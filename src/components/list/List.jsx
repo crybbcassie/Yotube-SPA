@@ -8,8 +8,8 @@ export default function List({ selectedOption, handleOptionChange, videos, onDem
     <>
       <div className={cl.layout}>
         <h3>
-          videos on demand
-          <span> {onDemand}</span>
+          {/* videos on demand
+          <span>{onDemand}</span> */}
         </h3>
         <Segmented
           options={[

@@ -44,7 +44,6 @@ useEffect(() => {
           <Input
             placeholder="Edit your search here"
             size="large"
-            value={prevSearch}
             onChange={(e) => setSearch(e.target.value)}
           />
           <Select

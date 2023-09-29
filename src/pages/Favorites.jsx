@@ -27,13 +27,13 @@ const favs = useSelector((state) => state.favs.favs);
   };
     const navigate = useNavigate();
 
-    const nav = () => {
-      navigate("/youtube-spa/search");
-    }
-
   const openFav = (record) => {
-    nav();
-    dispatch(fetchVideos(record))
+    console.log(record); 
+    dispatch(fetchVideos(record));
+    navigate({
+      pathname: "/youtube-spa/search",
+      search: `?onDemand=${record.search}`,
+    });
   }
 
    const columns = [
@@ -74,8 +74,7 @@ const favs = useSelector((state) => state.favs.favs);
      },
    ];
 
-const data = favs.map(({ id, search, result, sort }) => ({
-  id,
+const data = favs.map(({ search, result, sort }) => ({
   key: search,
   search,
   result,
@@ -84,7 +83,7 @@ const data = favs.map(({ id, search, result, sort }) => ({
 
     return (
       <>
-        <Header btn={btn} nav={nav} />
+        <Header btn={btn}  />
         <div className="main favs">
           <h1 className={cl.fav}>Favorites</h1>
           <Table

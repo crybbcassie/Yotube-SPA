@@ -3,44 +3,41 @@ import { useEffect, useState } from "react";
 import { Input, Space, Button } from "antd";
 import { HeartOutlined, HeartTwoTone } from "@ant-design/icons";
 import Header from '../components/header/Header'
-import { useNavigate, useParams, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { fetchVideos } from "../redux/videoSlice";
-import { addFav, removeFav } from "../redux/favsSlice";
+import { addFav } from "../redux/favsSlice";
 import List from '../components/list/List'
-import EditModal from "../components/modals/EditModal";
 
 export default function Search(){
 const [selectedOption, setSelectedOption] = useState("List");
 const [query, setQuery] = useState({
   search: "",
 });
-const [onDemand, setOnDemand] = useState('')
 const videos = useSelector((state) => state.videos.videos);
 const favs = useSelector((state) => state.favs.favs)
 const dispatch = useDispatch();
+const record = { search: query.search, result: 10, sort: "relevance" };
 const btn = `Go to favorites`;
-
-const handleOptionChange = (value) => {
-  setSelectedOption(value);
-};
-
-const { request } = useParams();
+const navigate = useNavigate();
 
   useEffect(() => {
-    if (request) {
-      setQuery(request);
-      dispatch(fetchVideos(record));
-    }
-  }, [request, dispatch]);
+    dispatch(fetchVideos(record))
+    navigate({
+      pathname: "/youtube-spa/search",
+      search: `?onDemand=${record.search}`,
+    })
+  }, [dispatch]);
 
   const handleSearch = () => {
     dispatch(
       fetchVideos(record)
     );
-    setOnDemand(query.search);
+        navigate({
+          pathname: "/youtube-spa/search",
+          search: `?onDemand=${record.search}`,
+        });
   };
 
-    const navigate = useNavigate();
     const nav = () => {
       navigate("/youtube-spa/favorites");
     }
@@ -60,17 +57,6 @@ const { request } = useParams();
         )
       );
     };
-
-        const [open, setVisible] = useState(false);
-        const handleBuyClick = (record) => {
-          // setSelectedRecord(record);
-          setVisible(true);
-        };
-
-        const handleCancel = () => {
-          setVisible(false);
-        };
-      const record = { search: query.search, result: 10, sort: "relevance" };
 
     return (
       <>
@@ -98,11 +84,6 @@ const { request } = useParams();
                   ) : (
                     <HeartOutlined style={{ fontSize: "20px" }} />
                   )}
-                  <EditModal
-                    open={open}
-                    onCancel={handleCancel}
-                    record={record}
-                  />
                 </div>
               }
             />
@@ -112,10 +93,9 @@ const { request } = useParams();
           </Space.Compact>
           {videos.length > 0 && (
             <List
-              onDemand={onDemand}
               videos={videos}
               selectedOption={selectedOption}
-              handleOptionChange={handleOptionChange}
+              handleOptionChange={value => setSelectedOption(value)}
             />
           )}
         </div>
