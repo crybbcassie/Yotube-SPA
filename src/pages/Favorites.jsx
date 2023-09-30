@@ -6,7 +6,7 @@ import Header from '../components/header/Header'
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import {removeFav} from '../redux/favsSlice'
+import { removeFav } from '../redux/favsSlice'
 import { fetchVideos } from "../redux/videoSlice";
 
 export default function Favorites(){
@@ -26,8 +26,11 @@ const favs = useSelector((state) => state.favs.favs);
   };
     const navigate = useNavigate();
 
+        const nav = () => {
+          navigate("/youtube-spa/search");
+        };
+
   const openFav = (record) => {
-    console.log(record); 
     dispatch(fetchVideos(record));
     navigate({
       pathname: "/youtube-spa/search",
@@ -82,7 +85,7 @@ const data = favs.map(({ search, result, sort }) => ({
 
     return (
       <>
-        <Header btn={btn}  />
+        <Header btn={btn} nav={nav} />
         <div className="main favs">
           <h1 className={cl.fav}>Favorites</h1>
           <Table
