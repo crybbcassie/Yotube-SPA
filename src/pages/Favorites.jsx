@@ -9,7 +9,6 @@ import { useSelector, useDispatch } from "react-redux";
 import {removeFav} from '../redux/favsSlice'
 import { fetchVideos } from "../redux/videoSlice";
 
-
 export default function Favorites(){
 const btn = `Back to search`;
 const dispatch = useDispatch()

@@ -3,7 +3,7 @@ import { AppstoreOutlined, BarsOutlined } from "@ant-design/icons";
 import cl from "../styles/Components.module.css";
 import { CardVideo, ListVideo } from "../layout/index";
 
-export default function List({ selectedOption, handleOptionChange, videos, onDemand}) {
+export default function List({ selectedOption, handleOptionChange, videos}) {
   return (
     <>
       <div className={cl.layout}>

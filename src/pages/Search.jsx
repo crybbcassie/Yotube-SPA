@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { fetchVideos } from "../redux/videoSlice";
 import { addFav } from "../redux/favsSlice";
 import List from '../components/list/List'
+import { useParams } from "react-router-dom";
 
 export default function Search(){
 const [selectedOption, setSelectedOption] = useState("List");
@@ -19,14 +20,17 @@ const dispatch = useDispatch();
 const record = { search: query.search, result: 10, sort: "relevance" };
 const btn = `Go to favorites`;
 const navigate = useNavigate();
+const { onDemand } = useParams();
 
   useEffect(() => {
-    dispatch(fetchVideos(record))
-    navigate({
-      pathname: "/youtube-spa/search",
-      search: `?onDemand=${record.search}`,
-    })
-  }, [dispatch]);
+    if (onDemand) {
+      dispatch(fetchVideos(record));
+      navigate({
+        pathname: "/youtube-spa/search",
+        search: `?onDemand=${record.search}`,
+      });
+    }
+  }, [dispatch, onDemand]);
 
   const handleSearch = () => {
     dispatch(

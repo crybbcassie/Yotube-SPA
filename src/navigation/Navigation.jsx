@@ -1,5 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import { LogIn, SignUp, Search, Favorites } from "../pages/index";
+import List from "../components/list/List";
 import { useState } from "react";
 
 export default function Navigation() {
@@ -19,6 +20,7 @@ export default function Navigation() {
       {token ? (
         <>
         <Route path="youtube-spa/search" element={<Search />} />
+        <Route path="youtube-spa/search/:onDemand" element={<List />} />
         <Route path="youtube-spa/favorites" element={<Favorites />} />
         </>
       ) : (
