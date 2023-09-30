@@ -14,7 +14,6 @@ const dispatch = useDispatch();
 
 const handleSubmit = () => {
   const newData = {
-    id: record.id,
     newSearch: search,
     newResult: result,
     newSort: sort,
