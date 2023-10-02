@@ -48,16 +48,18 @@ const { onDemand } = useParams();
 
      const handleFavorite = (event) => {
        event.stopPropagation();
-       dispatch(addFav(query.search));
+       dispatch(addFav(query));
      };
 
     const isFavorite = (str) => {
+      console.log(favs)
       return (
-        (!query.search) ||
+        !query.search ||
         favs.some(
           (item) =>
+            typeof item.search === "string" &&
             item.search.trim().toLowerCase() ===
-            query.search.trim().toLowerCase()
+              query.search.trim().toLowerCase()
         )
       );
     };
