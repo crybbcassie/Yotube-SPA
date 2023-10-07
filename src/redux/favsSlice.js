@@ -27,11 +27,8 @@ export const favsSlice = createSlice({
       );
     },
     editFav: (state, action) => {
-  const { newSearch, newResult, newSort } = action.payload;
-  const existingFav = state.favs.find(
-    (fav) =>
-      fav.search === action.payload.search
-  );
+  const { prevSearch, newSearch, newResult, newSort } = action.payload;
+  const existingFav = state.favs.find((fav) => fav.search === prevSearch);
   if (existingFav) {
     existingFav.search = newSearch;
     existingFav.result = newResult;
